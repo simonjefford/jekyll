@@ -114,7 +114,7 @@ module Jekyll
     def template
       case self.site.permalink_style
       when :pretty
-        "/:categories/:year/:month/:day/:title/"
+        "/:categories/:year/:month/:day/:title"
       when :none
         "/:categories/:title.html"
       when :date
@@ -133,7 +133,7 @@ module Jekyll
 
       @url ||= {
         "year"       => date.strftime("%Y"),
-        "month"      => date.strftime("%m"),
+        "month"      => date.strftime("%m").gsub(/0/, ""),
         "day"        => date.strftime("%d"),
         "title"      => CGI.escape(slug),
         "categories" => categories.sort.join('/')
